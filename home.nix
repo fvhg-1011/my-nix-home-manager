@@ -32,10 +32,34 @@
 		bottom # htop rust based 
     zellij # tmux rust based
     lfs # df rust based
-		#misc
+    ripgrep # grep rust based
+    fd # find rust based
+    atuin # history rust based
+    felix-fm #file manager rust based
+		fnm #node version manager rust based
+		
+    #misc
     trash-cli # rm put to the bin
 		neofetch # show pc information
 		tldr # simple manual page
+    lazygit #terminal ui git command written in go
+    translate-shell #translate in terminal
+    
+    #Environment list
+    python39
+    rustc
+    cargo #rust dependencies
+    lua 
+    awscli2
+    kompose # docker-compose -> to kubernetes yml
+    eksctl # eks cli
+    kubernetes-helm
+    terraform
+    ansible
+
+
+    #language server
+    nodePackages_latest.yaml-language-server #YAML
 		];
   #needs config
 	#Zoxide
@@ -45,7 +69,7 @@
 		enableBashIntegration = true;
 
 	};
-  #Helix - Post Modern Code Editor
+  #Helix - Post Modern Terminal Code Editor
   programs.helix = {
     enable = true;
     settings = {
@@ -59,7 +83,7 @@
       };    
     };
   };	
-  #Neovim - Modern Code Editor
+  #Neovim - Modern Terminal Code Editor
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -88,6 +112,7 @@
        cat  = "bat";
        rm   = "trash";
        df   =  "lfs";
+       history = "history | cat -n";
     };
     shellAbbrs = {
       #Docker
@@ -106,12 +131,15 @@
       hms  = "home-manager switch";
       #Kubectl
       kube = "kubectl";
+      #zellij
+      tmux = "zellij";
           };
-    #enables colored in man
+    #add lines in interactive section   
     interactiveShellInit = 
     ''
-    set -x MANPAGER "sh -c 'col -bx | bat -l man -p '"  
+    set -x MANPAGER "sh -c 'col -bx | bat -l man -p '" 
     set -x KUBECONFIG $HOME/.kube/config 
+    atuin init fish | source
     ''; 
   };
   #Starship
