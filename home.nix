@@ -22,8 +22,7 @@
   # direct download
   # tldr
   # Man Color
-  home.packages = with pkgs;[
-  	
+  home.packages = with pkgs;[	
 		# rust based
 		macchina # neofetch rust based
     bat # cat based rust
@@ -44,19 +43,22 @@
 		tldr # simple manual page
     lazygit #terminal ui git command written in go
     translate-shell #translate in terminal
-    
+		mycli #colorshell mysql cli
+    glow #markdown renderer
+       
     #Environment list
-    python39
     rustc
     cargo #rust dependencies
     lua 
     awscli2
     kompose # docker-compose -> to kubernetes yml
     eksctl # eks cli
+		doctl # digital ocean cli
     kubernetes-helm
     terraform
     ansible
-
+		vagrant	
+		jenkins
 
     #language server
     nodePackages_latest.yaml-language-server #YAML
@@ -131,8 +133,6 @@
       hms  = "home-manager switch";
       #Kubectl
       kube = "kubectl";
-      #zellij
-      tmux = "zellij";
           };
     #add lines in interactive section   
     interactiveShellInit = 
@@ -140,6 +140,7 @@
     set -x MANPAGER "sh -c 'col -bx | bat -l man -p '" 
     set -x KUBECONFIG $HOME/.kube/config 
     atuin init fish | source
+    eval "$(fnm env)"
     ''; 
   };
   #Starship
@@ -147,4 +148,18 @@
     enable = true;
     enableFishIntegration = true;
   };
+
+	#Tmux 
+	programs.tmux = {
+		enable = true;
+		mouse = true;
+		shortcut = "a";
+		plugins = with pkgs.tmuxPlugins; [
+			sensible
+			pain-control
+			yank
+			prefix-highlight
+			better-mouse-mode
+		];
+	};
 }
