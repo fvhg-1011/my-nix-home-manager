@@ -45,6 +45,7 @@
     translate-shell #translate in terminal
 		mycli #colorshell mysql cli
     glow #markdown renderer
+		jq #command-line JSON 
        
     #Environment list
     rustc
@@ -59,6 +60,7 @@
     ansible
 		vagrant	
 		jenkins
+		podman
 
     #language server
     nodePackages_latest.yaml-language-server #YAML
@@ -107,11 +109,12 @@
   programs.fish = {
     enable = true;
     shellAliases = {
+			 terraform-apply = "terraform apply --auto-approve";
+			 terraform-destroy = "terraform destroy --auto-approve";
        ls   = "exa --grid --color auto --icons --sort=type";
        ll   = "exa --long --color always --icons --sort=type";
        la   = "exa --grid --all --color auto --icons --sort=type";
        lla  = "exa --long --all --color auto --icons --sort=type";
-       cat  = "bat";
        rm   = "trash";
        df   =  "lfs";
        history = "history | cat -n";
